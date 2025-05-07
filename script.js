@@ -1,4 +1,4 @@
-const words = ["example", "coding", "vanilla", "script", "random"];
+const words = ["example", "coding", "vanilla", "script", "random", "context", "input"];
 let currentWord = "";
 let scrambled = "";
 let tries = 0;
@@ -10,7 +10,12 @@ const mistakesEl = document.getElementById("mistakes");
 const wrongLettersEl = document.getElementById("wrongLetters");
 
 function scrambleWord(word) {
-  return word.split('').sort(() => 0.5 - Math.random()).join('');
+  const arr = word.split("");
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr.join("")
 }
 
 function generateRandomWord() {
